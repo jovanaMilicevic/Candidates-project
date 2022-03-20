@@ -1,0 +1,72 @@
+﻿@model Candidates.Models.Lists
+
+@{
+    ViewData["Title"] = "AddSkill";
+}
+
+<h2>Add Skill for @Html.DisplayFor(model => model.Candidate.Name)</h2>
+
+    
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.HasSkills)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.HasSkills)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            <form asp-action="RemoveSkill">
+                                <div class="form-group">
+                                    <input hidden value="@item.Id" name="ids" />
+                                    <input hidden value="@Model.Candidate.Id" name="idc" />
+                                    <input type="submit" value="RemoveSkill" class="btn btn-default" />
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    
+    
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DoesntHaveSkills)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.DoesntHaveSkills)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            <form asp-action="AddSkills">
+                                <div class="form-group">
+                                    <input hidden value="@item.Id" name="ids" />
+                                    <input hidden value="@Model.Candidate.Id" name="idc" />
+                                    <input type="submit" value="AddSkills" class="btn btn-default" />
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    
